@@ -16,10 +16,15 @@ data Nat = Zero | Suc Nat
   deriving (Eq, Show)
 
 makeNat :: Int -> Nat
-makeNat = todo "2.1 make"
+makeNat num = case num of 
+  0 -> Zero
+  _ | num > 0 -> Suc (makeNat (num - 1))
+    | otherwise -> error "invalid input"
 
 foldNat :: (a -> a) -> a -> Nat -> a
-foldNat = todo "2.1 fold"
+foldNat s z n = case n of
+  Zero -> z
+  Suc m -> s (foldNat s z m)  
 
 
 -- 2.2. Другое бинарное дерево.
